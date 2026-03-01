@@ -17,7 +17,7 @@ app.post("/chat", async (req, res) => {
             {
                 method: "POST",
                 headers: {
-                    "Authorization": `Bearer ${sk-or-v1-403...069}`,
+                    "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
@@ -34,6 +34,7 @@ app.post("/chat", async (req, res) => {
         });
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             reply: "Server error"
         });
