@@ -8,21 +8,25 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/chat", async (req, res) => {
-
   try {
 
-    // Check API key
     if (!process.env.OPENROUTER_API_KEY) {
       return res.status(500).json({ reply: "API key missing" });
     }
 
-    const messages = req.body.messages;
+    let bodyData = req.body;
+
+    // 🔥 FIX: Handle Sketchware wrapped JSON
+    if (bodyData.json) {
+      bodyData = JSON.parse(bodyData.json);
+    }
+
+    const messages = bodyData.messages;
 
     if (!messages) {
       return res.status(400).json({ reply: "Messages missing" });
     }
 
-    // 🔥 OpenRouter Request
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
@@ -40,9 +44,6 @@ app.post("/chat", async (req, res) => {
 
     const data = await response.json();
 
-    console.log("OpenRouter response:", data);
-
-    // Check if model returned properly
     if (!data.choices) {
       return res.status(500).json({
         reply: data.error?.message || "Model error"
@@ -57,8 +58,4 @@ app.post("/chat", async (req, res) => {
     console.error("Server error:", error);
     res.status(500).json({ reply: "Server error" });
   }
-});
-
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
 });
