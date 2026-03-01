@@ -32,7 +32,7 @@ app.post("/chat", async (req, res) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "google/gemma-3n-e2b-it:free",
+          model: "qwen/qwen3-next-80b-a3b-instruct:free",
           messages: messages
         })
       }
