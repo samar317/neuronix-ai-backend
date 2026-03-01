@@ -17,7 +17,7 @@ app.post("/chat", async (req, res) => {
             {
                 method: "POST",
                 headers: {
-                    "Authorization": `Bearer ${process.env.sk-or-v1-040...fee}`,
+                    "Authorization": `Bearer ${process.env.sk-or-v1-403...069}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
