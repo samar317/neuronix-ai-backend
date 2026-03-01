@@ -38,7 +38,7 @@ app.post("/chat", async (req, res) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "google/gemma-3n-e2b-it:free",
+          model: "openai/gpt-oss-120b:free",
           messages: messages
         })
       }
