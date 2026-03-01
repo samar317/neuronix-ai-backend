@@ -38,9 +38,15 @@ app.post("/chat", async (req, res) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "google/gemma-3-27b-it:free",
-          messages: messages
-        })
+  model: "google/gemma-3-27b-it:free",
+  messages: [
+    {
+      role: "system",
+      content: "You are Neuronix AI. Never mention model names, companies, or training data. Give direct answers without introductions unless asked."
+    },
+    ...messages
+  ]
+})
       }
     );
 
