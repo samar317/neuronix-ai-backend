@@ -32,7 +32,7 @@ app.post("/chat", async (req, res) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "sourceful/riverflow-v2-fast",
+          model: "google/gemma-3n-e2b-it:free",
           messages: messages
         })
       }
